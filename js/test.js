@@ -72,8 +72,6 @@ function sprite (options) {
 
 // Get canvas
 canvas = document.getElementById("canvas");
-canvas.width = 432;
-canvas.height = 640;
 
 // Create sprite sheet
 trumpImage = new Image();
@@ -86,7 +84,7 @@ trump = sprite({
   image: trumpImage,
   numberOfFrames: 4,
   ticksPerFrame: 4,
-  x:0,
+  x: canvas.width /2 - (0.5 * (trumpWidth/divisor)),
   y: canvas.height - (trumpHeight/divisor) -111,
   speed: trumpSpeed
 });
@@ -95,33 +93,6 @@ function eat(){
   animate = true;
   rotations = 0;
 }
-//left and right keypush event handlers
-document.onkeydown = function (event) {
-  if (event.keyCode == 39) {
-    if (keydown) return;
-    keydown = true;
-    trump.x += trump.speed;
-    if (trump.x + (trump.width/(divisor* 4)) >= 360) {
-      trump.x = 360 - (trump.width/(divisor* 4));
-    }
-  } else if (event.keyCode == 37) {
-    if (keydown) return;
-    keydown = true;
-    trump.x -= trump.speed;
-    if (trump.x <= 0) {
-      trump.x = 0;
-    }
-  }
-};
-
-document.onkeyup = function(event) {
-  if (event.keyCode == 39) {
-    keydown = false;
-  } else if (event.keyCode == 37) {
-    keydown = false;
-  }
-};
-
 
 // Load sprite sheet
 trumpImage.addEventListener("load", gameLoop);
