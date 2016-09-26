@@ -1,29 +1,41 @@
 var canvas = document.getElementById("canvas"),
     animate = false,
     rotations = 0,
-    divisor = 5,
     continueAnimating = false,
     score = 0;
 
 
 var trumpImage = new Image(),
-    trumpHeight = 542,
-    trumpWidth = 432,
+    trumpHeight = 97,
+    trumpWidth = 86.5,
     trumpSpeed = 10;
 
-    trumpImage.src = "https://cloud.githubusercontent.com/assets/11725595/18814805/98ee9a44-8315-11e6-8dc4-10bb1d5c9f2c.png";
+    trumpImage.src = "./assets/TrumpSmall.png";
 
-var dildoHeight = 100,
-    dildoWidth = 50,
-    totalDildos = 6,
+var totalDildos = 1,
     dildoImagesArray = [],
     activeDildos = [],
-    dildoNames = ['Beads', 'Black', 'Circ', 'Green', 'Mex', 'Pink', 'Tur', 'Uncir', 'Yellow'];
+    dildoNames = [
+      {name: 'Beads', width: 29, height: 150},
+      {name:'Black', width: 62, height: 160 },
+      {name:'Green', width: 38, height: 300 },
+      {name:'Mex', width: 84, height: 150 },
+      {name:'Pink', width: 52, height: 145 },
+      {name:'Red', width: 70, height: 150 },
+      {name:'Tur', width: 72, height: 150 },
+      {name:'Yellow', width: 75, height: 150 }
+    ];
 
   // draw dildos
  for (var i = 0; i < dildoNames.length; i++) {
-   dildoImagesArray[i] = new Image();
-   dildoImagesArray[i].src = './assets/' + dildoNames[i]+'.png';
+   dildoImagesArray[i] = {
+     image: new Image(),
+     dims: {
+       w: dildoNames[i].width,
+       h: dildoNames[i].height
+     }
+   };
+   dildoImagesArray[i].image.src = './assets/' + dildoNames[i].name +'.png';
  }
 
 function random(min, max) {
@@ -72,8 +84,9 @@ function sprite (options) {
         dildo.y += dildo.speed;
 
         // if the dildo hits the canvas,
-        if (dildo.y + dildoHeight > canvas.height - 110) {
+        if (dildo.y + dildo.height > canvas.height - 110) {
           continueAnimating = false;
+          //show end screen
         }
       }
 
@@ -108,15 +121,15 @@ function sprite (options) {
       that.height,
       that.x,
       that.y,
-      (that.width / numberOfFrames) / divisor,
-      that.height/ divisor);
+      (that.width / numberOfFrames),
+      that.height);
       for (var i = 0; i < activeDildos.length; i++) {
-          var dildo = activeDildos[i];
-          dildo.onload = that.context.drawImage(dildoImagesArray[dildo.style] ,dildo.x,dildo.y, dildoWidth, dildoHeight);
+        var dildo = activeDildos[i];
+        dildo.onload = that.context.drawImage(dildoImagesArray[dildo.style].image ,dildo.x,dildo.y, dildoImagesArray[dildo.style].dims.w, dildoImagesArray[dildo.style].dims.h);
       }
-          that.context.font = "14px Times New Roman";
-          that.context.fillStyle = "black";
-          that.context.fillText("Score: " + score, 10, 15);
+      that.context.font = "14px Times New Roman";
+      that.context.fillStyle = "black";
+      that.context.fillText("Score: " + score, 10, 15);
   };
 
   return that;
@@ -125,13 +138,13 @@ function sprite (options) {
 // Create sprite
 var trump = sprite({
   context: canvas.getContext("2d"),
-  width: 1728,
-  height: 542,
+  width: 346,
+  height: 97,
   image: trumpImage,
   numberOfFrames: 4,
   ticksPerFrame: 4,
-  x: canvas.width /2 - (0.5 * (trumpWidth/divisor)),
-  y: canvas.height - (trumpHeight/divisor) -111,
+  x: canvas.width /2 - (0.5 * (trumpWidth)),
+  y: canvas.height - trumpHeight -110,
   speed: trumpSpeed
 });
 
@@ -145,11 +158,12 @@ for (var i = 0; i < totalDildos; i++) {
 }
 
 function addDildo() {
-  var number = random(0,9);
+  console.log('hello adding dild');
+  var number = random(0,8);
   var dildo = {
     style: number,
-    width: dildoWidth,
-    height: dildoHeight
+    width: dildoImagesArray[number].dims.w,
+    height: dildoImagesArray[number].dims.h
   };
 
   resetDildo(dildo);
@@ -157,18 +171,22 @@ function addDildo() {
 }
 
 function isColliding(a, b) {
-    return !(
-    b.x > a.x + a.width || b.x + (b.width/(4*divisor)) < a.x || b.y > a.y + a.height || b.y + b.height < a.y);
+  return !(
+  b.x > a.x + a.width || b.x + (b.width/4) < a.x || b.y + 15 > a.y + a.height || b.y + b.height < a.y);
 }
 
 function resetDildo(dildo) {
-  dildo.x = Math.random() * (canvas.width - dildoWidth);
-  dildo.y = 0 - dildoHeight -20;
+  dildo.style = random(0,8);
+  dildo.width = dildoImagesArray[dildo.style].dims.w;
+  dildo.height = dildoImagesArray[dildo.style].dims.h;
+  dildo.x = Math.random() * (canvas.width - dildo.width);
+  dildo.y = 0 - dildo.height -20;
   dildo.speed = 0.2 + Math.random() * 0.5;
 }
 
 // Load sprite sheet
 function start() {
+  setInterval(addDildo, 10000);
   score = 0;
   for (var i = 0; i < activeDildos.length; i++) {
     resetDildo(activeDildos[i]);
