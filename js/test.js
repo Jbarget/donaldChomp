@@ -6,24 +6,24 @@ var canvas = document.getElementById("canvas"),
 
 
 var trumpImage = new Image(),
-    trumpHeight = 97,
-    trumpWidth = 86.5,
+    trumpHeight = 141,
+    trumpWidth = 112.5,
     trumpSpeed = 10;
 
-    trumpImage.src = "./assets/TrumpSmall.png";
+    trumpImage.src = "./assets/Trump.png";
 
 var totalDildos = 1,
     dildoImagesArray = [],
     activeDildos = [],
     dildoNames = [
-      {name: 'Beads', width: 29, height: 150},
-      {name:'Black', width: 62, height: 160 },
-      {name:'Green', width: 38, height: 300 },
-      {name:'Mex', width: 84, height: 150 },
-      {name:'Pink', width: 52, height: 145 },
-      {name:'Red', width: 70, height: 150 },
-      {name:'Tur', width: 72, height: 150 },
-      {name:'Yellow', width: 75, height: 150 }
+      {name: 'Beads', width: 15, height: 75},
+      {name:'Black', width: 31, height: 80 },
+      {name:'Green', width: 13, height: 99 },
+      {name:'Mex', width: 42, height: 75 },
+      {name:'Pink', width: 26, height: 73 },
+      {name:'Red', width: 35, height: 75 },
+      {name:'Tur', width: 36, height: 75 },
+      {name:'Yellow', width: 38, height: 75 }
     ];
 
   // draw dildos
@@ -138,8 +138,8 @@ function sprite (options) {
 // Create sprite
 var trump = sprite({
   context: canvas.getContext("2d"),
-  width: 346,
-  height: 97,
+  width: 450,
+  height: 141,
   image: trumpImage,
   numberOfFrames: 4,
   ticksPerFrame: 4,

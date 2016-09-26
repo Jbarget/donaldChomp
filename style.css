@@ -20,12 +20,10 @@ html, body {
   font-family: 'Special Elite', cursive;
 }
 
-.game-over {
-  display: none;
+.instructions {
   position: absolute;
-  top: 0;
-  height: 640px;
-  width: 360px;
-  border: black 1px solid;
-  background-color: #6954f7;
+  top: 300px;
+  text-align: center;
+  left: 55px;
+  width: 70%;
 }

@@ -16,7 +16,6 @@ document.onkeydown = function (event) {
       trump.x = 0;
     }
   } else if (event.keyCode === 32 && !continueAnimating) {
-    console.log('hello');
     document.getElementById('info').style.display = 'none';
     start();
 
