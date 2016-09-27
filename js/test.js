@@ -12,7 +12,7 @@ var trumpImage = new Image(),
 
     trumpImage.src = "./assets/Trump.png";
 
-var totalDildos = 1,
+var totalDildos = 6,
     dildoImagesArray = [],
     activeDildos = [],
     dildoNames = [
@@ -86,6 +86,9 @@ function sprite (options) {
         // if the dildo hits the canvas,
         if (dildo.y + dildo.height > canvas.height - 110) {
           continueAnimating = false;
+          document.getElementById('game-over').style.display = 'block';
+          document.getElementById('score').style.display = 'block';
+          document.getElementById('score').innerHTML = score.toString();
           //show end screen
         }
       }
@@ -158,7 +161,6 @@ for (var i = 0; i < totalDildos; i++) {
 }
 
 function addDildo() {
-  console.log('hello adding dild');
   var number = random(0,8);
   var dildo = {
     style: number,
@@ -184,9 +186,33 @@ function resetDildo(dildo) {
   dildo.speed = 0.2 + Math.random() * 0.5;
 }
 
+function moveDonaldRight(){
+  keydown = true;
+  trump.x += trump.speed;
+  if (trump.x + (trump.width/ 4) >= 360) {
+    trump.x = 360 - (trump.width/4);
+  }
+}
+
+function moveDonaldLeft(){
+  keydown = true;
+  trump.x -= trump.speed;
+  if (trump.x <= 0) {
+    trump.x = 0;
+  }
+}
+document.getElementById('right').addEventListener('click', moveDonaldRight);
+document.getElementById('left').addEventListener('click', moveDonaldLeft);
+
 // Load sprite sheet
 function start() {
   setInterval(addDildo, 10000);
+  document.getElementById('start-button').style.display = 'none';
+  document.getElementById('info').style.display = 'none';
+  document.getElementById('game-over').style.display = 'none';
+  document.getElementById('left').style.display = 'inline-block';
+  document.getElementById('right').style.display = 'inline-block';
+
   score = 0;
   for (var i = 0; i < activeDildos.length; i++) {
     resetDildo(activeDildos[i]);
