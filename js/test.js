@@ -89,6 +89,8 @@ function sprite (options) {
           document.getElementById('game-over').style.display = 'block';
           document.getElementById('score').style.display = 'block';
           document.getElementById('score').innerHTML = score.toString();
+          document.getElementById('start-button').style.display = 'block';
+          document.getElementById('start-button').style.bottom = '350px';
           //show end screen
         }
       }
@@ -208,6 +210,7 @@ document.getElementById('left').addEventListener('click', moveDonaldLeft);
 function start() {
   setInterval(addDildo, 10000);
   document.getElementById('start-button').style.display = 'none';
+  document.getElementById('score').style.display = 'none';
   document.getElementById('info').style.display = 'none';
   document.getElementById('game-over').style.display = 'none';
   document.getElementById('left').style.display = 'inline-block';
