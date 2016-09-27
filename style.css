@@ -28,6 +28,8 @@ html, body {
   left: 0;
   top: 0;
 }*/
+
+
 .full-background {
   position: absolute;
   width: 100%;
@@ -99,15 +101,15 @@ html, body {
   margin: 0 auto;
 }
 
-@media only screen and (min-width: 414px) {
-  .full-background {
-    background-size: contain;
-  }
-}
-
-#canvas {
+.canvas {
   width: 100%;
   height: auto;
   background: url("assets/Background.png") no-repeat center center fixed;
   background-size: cover;
+}
+
+@media only screen and (min-width: 414px) {
+  .full-background, .canvas {
+    background-size: contain;
+  }
 }
