@@ -7,14 +7,24 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 </head>
 <body>
-  <div class='game'>
-    <img src='assets/Background.png' width='360' height='640' />
-    <div id='info' class='info'>
-      <p>Use arrow keys on a keyboard or tap the bottom of the screen (left or right) to move Donald</p>
-      <p>Press spacebar to start</p>
-
+  <div class='background'></div>
+  <div class='container dims'>
+    <div class='game dims'>
+      <img class='dims' src='assets/Background.png'/>
+      <div id='info' class='info dims'>
+        <img src='assets/StartGame.png'/>
+        <div class='instructions'>
+          <p>Use arrow keys on a keyboard or tap the bottom of the screen (left or right) to move Donald</p>
+          <p>Press spacebar to start or press the 'Start' button</p>
+        </div>
+      </div>
+      <img id='start-button' class='start-button'src='assets/StartButton.png' onclick="start()" />
+      <div id='left' class='left mobile-button'></div>
+      <div id='right' class='right mobile-button'></div>
+      <canvas id='canvas' class='canvas' width='360' height='640'></canvas>
+      <img id='game-over' class='game-over dims' src='assets/GameOver.png'/>
+      <div id='score' class='score'></div>
     </div>
-    <canvas id='canvas' class='canvas' width='360' height='640'></canvas>
   </div>
     <script src='js/eventListeners.js'></script>
     <script src='js/test.js'></script>

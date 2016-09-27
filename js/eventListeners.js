@@ -3,23 +3,13 @@ var keydown;
 document.onkeydown = function (event) {
   if (event.keyCode === 39) {
     if (keydown) return;
-    keydown = true;
-    trump.x += trump.speed;
-    if (trump.x + (trump.width/ 4) >= 360) {
-      trump.x = 360 - (trump.width/4);
-    }
+    moveDonaldRight();
   } else if (event.keyCode === 37) {
     if (keydown) return;
-    keydown = true;
-    trump.x -= trump.speed;
-    if (trump.x <= 0) {
-      trump.x = 0;
-    }
+    moveDonaldLeft();
   } else if (event.keyCode === 32 && !continueAnimating) {
-    console.log('hello');
-    document.getElementById('info').style.display = 'none';
+    console.log('hello here');
     start();
-
   }
 };
 
