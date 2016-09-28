@@ -8,7 +8,6 @@ document.onkeydown = function (event) {
     if (keydown) return;
     moveDonaldLeft();
   } else if (event.keyCode === 32 && !continueAnimating) {
-    console.log('hello here');
     start();
   }
 };

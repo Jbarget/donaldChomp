@@ -158,10 +158,6 @@ function eat(){
   rotations = 0;
 }
 
-for (var i = 0; i < totalDildos; i++) {
-  addDildo();
-}
-
 function addDildo() {
   var number = random(0,8);
   var dildo = {
@@ -213,12 +209,12 @@ function start() {
   document.getElementById('game-over').style.display = 'none';
   document.getElementById('left').style.display = 'inline-block';
   document.getElementById('right').style.display = 'inline-block';
-
+  activeDildos = [];
   score = 0;
-  for (var i = 0; i < activeDildos.length; i++) {
-    resetDildo(activeDildos[i]);
+  for (var i = 0; i < totalDildos; i++) {
+    addDildo();
   }
-  // trump.render();
+  console.log('activeDildos',activeDildos);
   if (!continueAnimating) {
     continueAnimating = true;
     gameLoop();
