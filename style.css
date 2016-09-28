@@ -3,12 +3,12 @@ html, body {
   overflow: hidden;
 }
 
-.dims {
+/*.dims {
   width: 360px;
   height: 640px;
-}
+}*/
 
-.background {
+/*.background {
   width: 100%;
   height: 100%;
 }
@@ -21,56 +21,49 @@ html, body {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-}
+}*/
 
-.canvas {
+/*.canvas {
   position: absolute;
   left: 0;
   top: 0;
+}*/
+
+
+.full-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
 }
 
 .info {
-  position: absolute;
-  top: 0;
   font-family: 'Special Elite', cursive;
+  background: url("assets/StartGame.png") no-repeat center center fixed;
+  background-size: cover;
 }
 
-.instructions {
-  position: absolute;
-  top: 300px;
-  text-align: center;
-  left: 55px;
-  width: 70%;
+.start-button {
+  display: block;
+  margin: 80vh auto;
+  cursor: pointer;
+  z-index: 2;
 }
 
 .game-over {
   display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
+  background: url("assets/GameOver.png") no-repeat center center fixed;
+  background-size: cover;
 }
 
 .score {
-  display: none;
   position: absolute;
   font-family: monospace;
-  bottom: 140px;
-  right: 30px;
-  width: 80px;
-  height: 80px;
-  text-align: center;
+  bottom: 28vh;
+  right: 13vw;
   font-size: 3.5em;
 }
 
-.start-button {
-  width: 206px;
-  height: 69px;
-  position: absolute;
-  bottom: 115px;
-  left: 77px;
-  cursor: pointer;
-  z-index: 2;
-}
+/*
 
 .mobile-button {
   display: none;
@@ -88,4 +81,35 @@ html, body {
 
 .right {
   background-color: green;
+}*/
+
+.wrapper {
+  display: table;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+.container {
+  display: table-cell;
+  vertical-align: middle;
+}
+.canvas-container {
+  position: relative;
+  max-width: 414px;
+  min-width: 320px;
+  margin: 0 auto;
+}
+
+.canvas {
+  width: 100%;
+  height: auto;
+  background: url("assets/Background.png") no-repeat center center fixed;
+  background-size: cover;
+}
+
+@media only screen and (min-width: 414px) {
+  .full-background, .canvas {
+    background-size: contain;
+  }
 }

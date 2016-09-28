@@ -209,8 +209,6 @@ document.getElementById('left').addEventListener('click', moveDonaldLeft);
 // Load sprite sheet
 function start() {
   setInterval(addDildo, 10000);
-  document.getElementById('start-button').style.display = 'none';
-  document.getElementById('score').style.display = 'none';
   document.getElementById('info').style.display = 'none';
   document.getElementById('game-over').style.display = 'none';
   document.getElementById('left').style.display = 'inline-block';
