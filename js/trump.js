@@ -97,7 +97,7 @@ function sprite (options) {
             0,
             that.width / numberOfFrames,
             that.height,
-            that.x,
+            160,
             that.y,
             trumpWidth,
             trumpHeight);
@@ -176,7 +176,6 @@ function eat(){
 
 function addDildo() {
   if (playing) {
-    console.log('adding dildo');
     var number = random(0,8);
     var dildo = {
       style: number,
