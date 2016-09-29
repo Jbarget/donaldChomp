@@ -32,6 +32,7 @@ var totalDildos = 5,
     ];
 
 var audio = new Audio('./assets/gulp.mp3');
+var mexAudio = new Audio('./assets/mexAudio.mp3');
 
 
   // draw dildos
@@ -86,8 +87,13 @@ function sprite (options) {
         // test for dildo-trump collision
         if (isColliding(dildo, trump)) {
             score += 10;
-            audio.currentTime = 0;
-            audio.play();
+            if(dildo.style === 3) {
+              mexAudio.currentTime = 0;
+              mexAudio.play();
+            } else {
+              audio.currentTime = 0;
+              audio.play();
+            }
             eat();
             resetDildo(dildo);
         }
