@@ -16,7 +16,8 @@ html, body {
   position: absolute;
   font-family: monospace;
   bottom: 30%;
-  right: 15%;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 2;
   font-size: 3.5em;
   color: #353535;
@@ -71,13 +72,23 @@ html, body {
   display: none;
 }
 
-@media screen and (min-width: 480px) {
+@media screen and (min-width: 414px) {
   .canvae {
     left: 50%;
     transform: translateX(-50%);
   }
   .score {
     left: 50%;
+    margin-left: 2.5em;
+  }
+}
+@media screen and (max-width: 401px) {
+  .score {
+    margin-left: 2.5em;
+  }
+}
+@media screen and (max-width: 399px) {
+  .score {
     margin-left: 2.5em;
   }
 }

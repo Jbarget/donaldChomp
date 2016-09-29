@@ -247,5 +247,5 @@ function start() {
     continueAnimating = true;
     gameLoop();
   }
-  setInterval(addDildo, 10000);
+  setInterval(addDildo, 7000);
 }
