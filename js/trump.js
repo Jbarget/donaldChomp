@@ -13,6 +13,8 @@ var trumpImage = new Image(),
     trumpHeight = 141 * yRatio,
     trumpSpeed = 10 / xRatio;
 
+
+
     trumpImage.src = "./assets/Trump.png";
 
 var totalDildos = 5,
@@ -28,6 +30,9 @@ var totalDildos = 5,
       {name:'Tur', width: 36, height: 75 },
       {name:'Yellow', width: 38, height: 75 }
     ];
+
+var audio = new Audio('./assets/gulp.mp3');
+
 
   // draw dildos
  for (var i = 0; i < dildoNames.length; i++) {
@@ -81,6 +86,8 @@ function sprite (options) {
         // test for dildo-trump collision
         if (isColliding(dildo, trump)) {
             score += 10;
+            audio.currentTime = 0;
+            audio.play();
             eat();
             resetDildo(dildo);
         }
@@ -97,7 +104,7 @@ function sprite (options) {
             0,
             that.width / numberOfFrames,
             that.height,
-            that.x,
+            160,
             that.y,
             trumpWidth,
             trumpHeight);
@@ -176,7 +183,6 @@ function eat(){
 
 function addDildo() {
   if (playing) {
-    console.log('adding dildo');
     var number = random(0,8);
     var dildo = {
       style: number,
@@ -241,5 +247,5 @@ function start() {
     continueAnimating = true;
     gameLoop();
   }
-  setInterval(addDildo, 10000);
+  setInterval(addDildo, 7000);
 }

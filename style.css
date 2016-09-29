@@ -15,10 +15,12 @@ html, body {
 .score {
   position: absolute;
   font-family: monospace;
-  bottom: 32%;
-  right: 15%;
+  bottom: 30%;
+  left: 50%;
+  transform: translateX(-50%);
   z-index: 2;
   font-size: 3.5em;
+  color: #353535;
 }
 
 .mobile-button {
@@ -51,19 +53,42 @@ html, body {
   vertical-align: middle;
 }
 .canvas-container {
+  left: 50%;
+  transform: translateX(-50%);
   position: relative;
-  max-width: 414px;
-  min-width: 320px;
+  min-height: 568px;
+  max-height: 736px;
   margin: 0 auto;
   height: 100vh
 }
 
 .canvae {
   position: absolute;
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
 }
 
 .back-canvas, .end-canvas {
   display: none;
+}
+
+@media screen and (min-width: 414px) {
+  .canvae {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .score {
+    left: 50%;
+    margin-left: 2.5em;
+  }
+}
+@media screen and (max-width: 401px) {
+  .score {
+    margin-left: 2.5em;
+  }
+}
+@media screen and (max-width: 399px) {
+  .score {
+    margin-left: 2.5em;
+  }
 }
