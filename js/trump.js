@@ -86,6 +86,7 @@ function sprite (options) {
         // test for dildo-trump collision
         if (isColliding(dildo, trump)) {
             score += 10;
+            audio.currentTime = 0;
             audio.play();
             eat();
             resetDildo(dildo);

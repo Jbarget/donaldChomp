@@ -76,4 +76,8 @@ html, body {
     left: 50%;
     transform: translateX(-50%);
   }
+  .score {
+    left: 50%;
+    margin-left: 2.5em;
+  }
 }
