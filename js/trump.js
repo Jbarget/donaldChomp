@@ -13,6 +13,8 @@ var trumpImage = new Image(),
     trumpHeight = 141 * yRatio,
     trumpSpeed = 10 / xRatio;
 
+
+
     trumpImage.src = "./assets/Trump.png";
 
 var totalDildos = 5,
@@ -28,6 +30,9 @@ var totalDildos = 5,
       {name:'Tur', width: 36, height: 75 },
       {name:'Yellow', width: 38, height: 75 }
     ];
+
+var audio = new Audio('./assets/gulp.mp3');
+
 
   // draw dildos
  for (var i = 0; i < dildoNames.length; i++) {
@@ -81,6 +86,7 @@ function sprite (options) {
         // test for dildo-trump collision
         if (isColliding(dildo, trump)) {
             score += 10;
+            audio.play();
             eat();
             resetDildo(dildo);
         }
