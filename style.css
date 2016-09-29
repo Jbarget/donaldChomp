@@ -52,19 +52,28 @@ html, body {
   vertical-align: middle;
 }
 .canvas-container {
+  left: 50%;
+  transform: translateX(-50%);
   position: relative;
-  max-width: 414px;
-  min-width: 320px;
+  min-height: 568px;
+  max-height: 736px;
   margin: 0 auto;
   height: 100vh
 }
 
 .canvae {
   position: absolute;
-  width: 100%;
-  height: auto;
+  width: auto;
+  height: 100%;
 }
 
 .back-canvas, .end-canvas {
   display: none;
+}
+
+@media screen and (min-width: 480px) {
+  .canvae {
+    left: 50%;
+    transform: translateX(-50%);
+  }
 }
