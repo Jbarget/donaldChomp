@@ -1,18 +1,21 @@
 var canvas = document.getElementById("canvas"),
+    context = canvas.getContext("2d"),
     animate = false,
     rotations = 0,
     continueAnimating = false,
-    score = 0;
-
+    score = 0,
+    xRatio = canvas.scrollWidth / 360,
+    yRatio = canvas.scrollHeight / 640,
+    stageHeight = 110;
 
 var trumpImage = new Image(),
-    trumpHeight = 141,
-    trumpWidth = 112.5,
-    trumpSpeed = 10;
+    trumpWidth = 112.5 * xRatio,
+    trumpHeight = 141 * yRatio,
+    trumpSpeed = 10 / xRatio;
 
     trumpImage.src = "./assets/Trump.png";
 
-var totalDildos = 6,
+var totalDildos = 5,
     dildoImagesArray = [],
     activeDildos = [],
     dildoNames = [
@@ -31,8 +34,8 @@ var totalDildos = 6,
    dildoImagesArray[i] = {
      image: new Image(),
      dims: {
-       w: dildoNames[i].width,
-       h: dildoNames[i].height
+       w: dildoNames[i].width * xRatio,
+       h: dildoNames[i].height * yRatio
      }
    };
    dildoImagesArray[i].image.src = './assets/' + dildoNames[i].name +'.png';
@@ -49,6 +52,7 @@ function gameLoop () {
     trump.update();
   }
 }
+
 
 function sprite (options) {
 
@@ -84,14 +88,25 @@ function sprite (options) {
         dildo.y += dildo.speed;
 
         // if the dildo hits the canvas,
-        if (dildo.y + dildo.height > canvas.height - 110) {
+        if (dildo.y + dildo.height > canvas.height - stageHeight) {
           continueAnimating = false;
-          document.getElementById('game-over').style.display = 'block';
+          that.context.clearRect(0,0, canvas.width, canvas.height);
+          that.context.drawImage(
+            that.image,
+            275,
+            0,
+            that.width / numberOfFrames,
+            that.height,
+            that.x,
+            that.y,
+            trumpWidth,
+            trumpHeight);
           document.getElementById('score').style.display = 'block';
           document.getElementById('score').innerHTML = score.toString();
           document.getElementById('start-button').style.display = 'block';
-          document.getElementById('start-button').style.bottom = '350px';
-          //show end screen
+          document.getElementById('start-button').style.top = '20%';
+          document.getElementById('end-canvas').style.display = 'block';
+          document.getElementById('back-canvas').style.display = 'none';
         }
       }
 
@@ -126,15 +141,16 @@ function sprite (options) {
       that.height,
       that.x,
       that.y,
-      (that.width / numberOfFrames),
-      that.height);
+      trumpWidth,
+      trumpHeight);
+
       for (var i = 0; i < activeDildos.length; i++) {
         var dildo = activeDildos[i];
         dildo.onload = that.context.drawImage(dildoImagesArray[dildo.style].image ,dildo.x,dildo.y, dildoImagesArray[dildo.style].dims.w, dildoImagesArray[dildo.style].dims.h);
       }
-      that.context.font = "14px Times New Roman";
-      that.context.fillStyle = "black";
-      that.context.fillText("Score: " + score, 10, 15);
+      // that.context.font = "14px Times New Roman";
+      // that.context.fillStyle = "black";
+      // that.context.fillText("Score: " + score, 10, 15);
   };
 
   return that;
@@ -143,13 +159,13 @@ function sprite (options) {
 // Create sprite
 var trump = sprite({
   context: canvas.getContext("2d"),
-  width: 450,
-  height: 141,
+  width: 550,
+  height: 183,
   image: trumpImage,
   numberOfFrames: 4,
   ticksPerFrame: 4,
-  x: canvas.width /2 - (0.5 * (trumpWidth)),
-  y: canvas.height - trumpHeight -110,
+  x: (canvas.width /2 - (0.5 * trumpWidth)),
+  y: canvas.height - (trumpHeight + stageHeight) ,
   speed: trumpSpeed
 });
 
@@ -159,20 +175,23 @@ function eat(){
 }
 
 function addDildo() {
-  var number = random(0,8);
-  var dildo = {
-    style: number,
-    width: dildoImagesArray[number].dims.w,
-    height: dildoImagesArray[number].dims.h
-  };
+  if (playing) {
+    console.log('adding dildo');
+    var number = random(0,8);
+    var dildo = {
+      style: number,
+      width: dildoImagesArray[number].dims.w,
+      height: dildoImagesArray[number].dims.h
+    };
 
-  resetDildo(dildo);
-  activeDildos.push(dildo);
+    resetDildo(dildo);
+    activeDildos.push(dildo);
+  }
 }
 
 function isColliding(a, b) {
   return !(
-  b.x > a.x + a.width || b.x + (b.width/4) < a.x || b.y + 15 > a.y + a.height || b.y + b.height < a.y);
+  b.x + 15 > a.x + a.width || b.x + (b.width/4) - 30 < a.x || b.y + 30 > a.y + a.height || b.y + b.height < a.y);
 }
 
 function resetDildo(dildo) {
@@ -180,15 +199,15 @@ function resetDildo(dildo) {
   dildo.width = dildoImagesArray[dildo.style].dims.w;
   dildo.height = dildoImagesArray[dildo.style].dims.h;
   dildo.x = Math.random() * (canvas.width - dildo.width);
-  dildo.y = 0 - dildo.height -20;
-  dildo.speed = 0.2 + Math.random() * 0.5;
+  dildo.y = 0 - dildo.height -40;
+  dildo.speed = 0.2 + Math.random() * 0.5 * yRatio;
 }
 
 function moveDonaldRight(){
   keydown = true;
   trump.x += trump.speed;
-  if (trump.x + (trump.width/ 4) >= 360) {
-    trump.x = 360 - (trump.width/4);
+  if (trump.x + (trumpWidth) >= 360) {
+    trump.x = (360 - trumpWidth) ;
   }
 }
 
@@ -202,11 +221,14 @@ function moveDonaldLeft(){
 document.getElementById('right').addEventListener('click', moveDonaldRight);
 document.getElementById('left').addEventListener('click', moveDonaldLeft);
 
+
 // Load sprite sheet
 function start() {
-  setInterval(addDildo, 10000);
-  document.getElementById('info').style.display = 'none';
-  document.getElementById('game-over').style.display = 'none';
+  document.getElementById('start-button').style.display = 'none';
+  document.getElementById('start-canvas').style.display = 'none';
+  document.getElementById('end-canvas').style.display = 'none';
+  document.getElementById('score').style.display = 'none';
+  document.getElementById('back-canvas').style.display = 'block';
   document.getElementById('left').style.display = 'inline-block';
   document.getElementById('right').style.display = 'inline-block';
   activeDildos = [];
@@ -214,9 +236,10 @@ function start() {
   for (var i = 0; i < totalDildos; i++) {
     addDildo();
   }
-  console.log('activeDildos',activeDildos);
+
   if (!continueAnimating) {
     continueAnimating = true;
     gameLoop();
   }
+  setInterval(addDildo, 10000);
 }

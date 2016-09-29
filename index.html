@@ -10,13 +10,12 @@
   <div class="wrapper">
     <div class="container">
       <div class="canvas-container">
-        <div id='info' class='info full-background'>
-          <img id='start-button' class='start-button' src='assets/StartButton.png' onclick="start()" />
-        </div>
-        <div id='game-over' class='game-over full-background'>
-          <div id='score' class='score'></div>
-        </div>
-        <canvas id='canvas' class='canvas' width='360' height='640'></canvas>
+        <img id='start-button' class='start-button' src='assets/StartButton.png' onclick="start()" />
+        <div id='score' class='score'></div>
+        <canvas id='start-canvas' class='start-canvas canvae' width='360' height='640'></canvas>
+        <canvas id='end-canvas' class='end-canvas canvae' width='360' height='640'></canvas>
+        <canvas id='back-canvas' class='back-canvas canvae' width='360' height='640'></canvas>
+        <canvas id='canvas' class='canvas canvae' width='360' height='640'></canvas>
         <div id='left' class='left mobile-button'></div>
         <div id='right' class='right mobile-button'></div>
       </div>
@@ -24,6 +23,8 @@
   </div>
 
     <script src='js/eventListeners.js'></script>
+    <script src='js/backgrounds.js'></script>
+    <script src='js/active-tab.js'></script>
     <script src='js/trump.js'></script>
 </body>
 </html>
