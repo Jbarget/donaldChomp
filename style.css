@@ -17,7 +17,7 @@ html, body {
   font-family: monospace;
   bottom: 30%;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(100%);
   z-index: 2;
   font-size: 3.5em;
   color: #353535;
@@ -34,11 +34,13 @@ html, body {
   z-index: 2;
 }
 .left {
-  left: 0;
+ left: 50%;
+ transform: translateX(-100%)
 }
 
 .right {
-  right: 0;
+  right: 50%;
+  transform: translateX(100%)
 }
 
 .wrapper {
@@ -78,17 +80,17 @@ html, body {
     transform: translateX(-50%);
   }
   .score {
-    left: 50%;
-    margin-left: 2.5em;
+    margin-left: 1.2em;
   }
 }
-@media screen and (max-width: 401px) {
+
+@media screen and (max-width: 413px) {
   .score {
-    margin-left: 2.5em;
+    margin-left: 0;
   }
 }
-@media screen and (max-width: 399px) {
+@media screen and (max-width: 375px) {
   .score {
-    margin-left: 2.5em;
+    margin-left: 1em;
   }
 }
