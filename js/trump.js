@@ -40,8 +40,8 @@ var mexAudio = new Audio('./assets/mexAudio.mp3');
    dildoImagesArray[i] = {
      image: new Image(),
      dims: {
-       w: dildoNames[i].width * xRatio,
-       h: dildoNames[i].height * yRatio
+       w: dildoNames[i].width / xRatio,
+       h: dildoNames[i].height / yRatio
      }
    };
    dildoImagesArray[i].image.src = './assets/' + dildoNames[i].name +'.png';
