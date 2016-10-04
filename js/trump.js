@@ -161,9 +161,9 @@ function sprite (options) {
         var dildo = activeDildos[i];
         dildo.onload = that.context.drawImage(dildoImagesArray[dildo.style].image ,dildo.x,dildo.y, dildoImagesArray[dildo.style].dims.w, dildoImagesArray[dildo.style].dims.h);
       }
-      // that.context.font = "14px Times New Roman";
-      // that.context.fillStyle = "black";
-      // that.context.fillText("Score: " + score, 10, 15);
+      that.context.font = "20px monospace";
+      that.context.fillStyle = "black";
+      that.context.fillText("Score: " + score, 240, 20, 100);
   };
 
   return that;
@@ -233,7 +233,6 @@ function moveDonaldLeft(){
 document.getElementById('right').addEventListener('click', moveDonaldRight);
 document.getElementById('left').addEventListener('click', moveDonaldLeft);
 
-
 // Load sprite sheet
 function start() {
   document.getElementById('start-button').style.display = 'none';
@@ -253,5 +252,5 @@ function start() {
     continueAnimating = true;
     gameLoop();
   }
-  setInterval(addDildo, 7000);
+  setInterval(addDildo, 10000);
 }
