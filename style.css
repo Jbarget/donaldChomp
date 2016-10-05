@@ -20,6 +20,7 @@ html, body {
   z-index: 2;
   font-size: 3.5em;
   color: #353535;
+  margin-left: 10%;
 }
 
 .mobile-button {
@@ -82,29 +83,14 @@ html, body {
   display: none;
 }
 
-@media screen and (min-width: 414px) {
-  .score {
-    margin-left: 10%;
-  }
-}
-
 @media screen and (max-width: 413px) {
   .start-button{
     top: 28em;
   }
-  .score {
-    margin-left: 10%;
-    top: 65%;
-  }
 }
 @media screen and (max-width: 378px) {
   .score {
-    top: 55%;
-  }
-}
-@media screen and (max-width: 361px) {
-  .score {
-    top: 55%;
+    top: 8em;
   }
 }
 @media screen and (max-width: 321px) {
@@ -112,6 +98,6 @@ html, body {
     top: 24em;
   }
   .score {
-    top: 55%;
+    top: 7em;
   }
 }
