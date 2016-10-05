@@ -163,7 +163,7 @@ function sprite (options) {
       }
       that.context.font = "20px monospace";
       that.context.fillStyle = "black";
-      that.context.fillText("Score: " + score, 240, 30, 100);
+      that.context.fillText("Score: " + score, 260, 30, 100);
   };
 
   return that;
