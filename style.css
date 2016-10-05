@@ -6,7 +6,7 @@ html, body {
 .start-button {
   position: relative;
   left: 50%;
-  top: 80%;
+  top: 30em;
   transform: translateX(-50%);
   cursor: pointer;
   z-index: 3;
@@ -15,7 +15,7 @@ html, body {
 .score {
   position: absolute;
   font-family: monospace;
-  top: 65%;
+  top: 9em;
   left: 65%;
   z-index: 2;
   font-size: 3.5em;
@@ -74,8 +74,8 @@ html, body {
   position: absolute;
   left: 0;
   top: 0;
-  width: auto;
-  height: 100%;
+  width: 100%;
+  height: auto;
 }
 
 .back-canvas, .end-canvas {
@@ -84,34 +84,34 @@ html, body {
 
 @media screen and (min-width: 414px) {
   .score {
-    margin-left: 15%;
+    margin-left: 10%;
   }
 }
 
 @media screen and (max-width: 413px) {
   .start-button{
-    top: 80%;
+    top: 28em;
   }
   .score {
-    margin-left: 15%;
+    margin-left: 10%;
     top: 65%;
   }
 }
 @media screen and (max-width: 378px) {
   .score {
-    top: 65%;
+    top: 55%;
   }
 }
 @media screen and (max-width: 361px) {
   .score {
-    top: 65%;
+    top: 55%;
   }
 }
 @media screen and (max-width: 321px) {
   .start-button{
-    top: 70%;
+    top: 24em;
   }
   .score {
-    top: 65%;
+    top: 55%;
   }
 }

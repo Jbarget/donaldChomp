@@ -4,9 +4,9 @@ var canvas = document.getElementById("canvas"),
     rotations = 0,
     continueAnimating = false,
     score = 0,
-    xRatio = canvas.scrollWidth / 360,
-    yRatio = canvas.scrollHeight / 640,
-    stageHeight = 110;
+    xRatio = canvas.scrollWidth / 375,
+    yRatio = canvas.scrollHeight / 559,
+    stageHeight = 112;
 
 var trumpImage = new Image(),
     trumpWidth = 112.5 * xRatio,
@@ -163,7 +163,7 @@ function sprite (options) {
       }
       that.context.font = "20px monospace";
       that.context.fillStyle = "black";
-      that.context.fillText("Score: " + score, 240, 20, 100);
+      that.context.fillText("Score: " + score, 240, 30, 100);
   };
 
   return that;
@@ -218,8 +218,8 @@ function resetDildo(dildo) {
 function moveDonaldRight(){
   keydown = true;
   trump.x += trump.speed;
-  if (trump.x + (trumpWidth) >= 360) {
-    trump.x = (360 - trumpWidth) ;
+  if (trump.x + (trumpWidth) >= 375) {
+    trump.x = (375 - trumpWidth) ;
   }
 }
 
