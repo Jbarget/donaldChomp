@@ -1,4 +1,4 @@
-https://jbarget.github.io/donaldChomp/
+Game here: https://donald-chomp.firebaseapp.com/
 
 # donaldChomp
 all views are my own
