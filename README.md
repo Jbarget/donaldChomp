@@ -1,7 +1,5 @@
-Game here: https://donald-chomp.firebaseapp.com/
-
 # donaldChomp
-all views are my own
+A client project for [Jungle Creations](https://junglecreations.com)
 
 Resources:
 
